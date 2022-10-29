@@ -1,65 +1,90 @@
+import { useState } from "react"
+
+
 const Header = (props) => {
   console.log(props)
   return(
     <div>
-      <h1>{props.course}</h1>
+      <h1>{props.name}</h1>
     </div>
+    
   )
 }
 
-const Content = (props) => {
+const Header2 = (props) => {
   console.log(props)
   return(
     <div>
-      <Part name={props.parts[0].name} exercises={props.parts[0].exercises} />
-      <Part name={props.parts[1].name} exercises={props.parts[1].exercises} />
-      <Part name={props.parts[2].name} exercises={props.parts[2].exercises} />
+      <h1>{props.name}</h1>
     </div>
   )
 }
 
-const Part = (props) => {
+const GStats =(props) => {
+  console.log(props)
   return(
+    // ei perkele toimi
     <div>
-      <p>{props.name} {props.exercises}</p>
+      <p>good {props.good}</p> 
     </div>
   )
 }
 
-const Total = (props) => {
+const NStats =(props) => {
+  console.log(props)
   return(
+    // ei perkele toimi
     <div>
-        <p>Total of exercises {props.parts[0].exercises + props.parts[1].exercises + props.parts[2].exercises}</p>
+      <p>neutral {props.neutral}</p>
     </div>
   )
 }
+
+const BStats =(props) => {
+  console.log(props)
+  return(
+    // ei perkele toimi
+    <div>
+      <p>bad {props.bad}</p>
+    </div>
+  )
+}
+
 const App = () => {
-  const course = {
-    name: 'Half Stack application development',
-    parts: [
-      {
-        name: 'Fundamentals of React',
-        exercises: 10
-      },
-
-      {
-        name: 'Using props to pass data',
-        exercises: 7
-      },
-
-      {
-        name: 'State of a component',
-        exercises: 14
-      }
-    ]
+  // tallenna napit toiseen kohtaan
+  const feedback ={
+    name: 'Give feedback',
   }
 
-  return (
+  const statistics ={
+    name: 'Statistics',
+  }
+
+  const [good, setGood] = useState(0)
+  const [neutral, setNeutral] = useState(0)
+  const [bad, setBad] = useState(0)
+
+  return(
     <div>
-      <Header course ={course.name} />
-      <Content parts ={course.parts} />
-      <Total parts = {course.parts} />
-      </div>
+      <Header name ={feedback.name} />
+
+      <button onClick={() => setGood(good + 1)}>
+        good
+      </button>
+
+      <button onClick={() =>setNeutral(neutral + 1)}>
+        neutral
+      </button>
+
+      <button onClick={() => setBad(bad +1)}>
+        bad
+      </button>
+
+      <Header2 name ={statistics.name} />
+      <GStats good ={good}  />
+      <NStats neutral ={neutral}  />
+      <BStats bad ={bad}  />
+    </div>
   )
 }
 
