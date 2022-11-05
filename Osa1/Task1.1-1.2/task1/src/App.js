@@ -21,15 +21,23 @@ const StatsHeader = () => {
 
 const Statistics = (props) => {
   console.log(props)
+  if (props.total === 0) 
+  {
+    return(
+      <p>No feedback given yet</p>
+    )
+}
+else {
   return(
-    <div>
-      <p>good {props.good} </p>
-      <p>neutral {props.neutral} </p>
-      <p>bad {props.bad}</p>
-      <p>all {props.all}</p>
-      <p>average {props.avg / props.total}</p>
-    </div>
-  )
+      <div>
+        <p>good {props.good} </p>
+        <p>neutral {props.neutral} </p>
+        <p>bad {props.bad}</p>
+        <p>all {props.all}</p>
+        <p>average {props.avg / props.total}</p>
+      </div>
+    )
+  }
 }
 
 const App = () => {
