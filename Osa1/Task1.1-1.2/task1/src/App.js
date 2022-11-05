@@ -5,17 +5,16 @@ const Header = (props) => {
   console.log(props)
   return(
     <div>
-      <h1>{props.name}</h1>
+      <h1>Give feedback</h1>
     </div>
     
   )
 }
 //lower header
-const Header2 = (props) => {
-  console.log(props)
+const StatsHeader = () => {
   return(
     <div>
-      <h1>{props.name}</h1>
+      <h2>statistics</h2>
     </div>
   )
 }
@@ -71,13 +70,7 @@ const Average =(props) => {
 
 const App = () => {
   // tallenna napit toiseen kohtaan
-  const feedback ={
-    name: 'Give feedback',
-  }
 
-  const statistics ={
-    name: 'Statistics',
-  }
 
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
@@ -87,7 +80,7 @@ const App = () => {
 
   return(
     <div>
-      <Header name ={feedback.name} />
+      <Header/>
 
       <button onClick={() =>
         {setGood(good + 1); 
@@ -116,12 +109,13 @@ const App = () => {
         bad
       </button>
 
-      <Header2 name ={statistics.name} />
+      <StatsHeader/>
       <GStats good ={good}  />
       <NStats neutral ={neutral}  />
       <BStats bad ={bad}  />
       <Stats all ={good + neutral + bad}/>
       <Average avg = {allReviews} total ={total}/>
+  
     </div>
   )
 }
