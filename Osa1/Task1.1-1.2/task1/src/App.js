@@ -19,54 +19,18 @@ const StatsHeader = () => {
   )
 }
 
-//good stats
-const GStats =(props) => {
+const Statistics = (props) => {
   console.log(props)
   return(
     <div>
-      <p>good {props.good}</p> 
-    </div>
-  )
-}
-
-//neutral stats
-const NStats =(props) => {
-  console.log(props)
-  return(
-    <div>
-      <p>neutral {props.neutral}</p>
-    </div>
-  )
-}
-//Bad stats
-const BStats =(props) => {
-  console.log(props)
-  return(
-    <div>
+      <p>good {props.good} </p>
+      <p>neutral {props.neutral} </p>
       <p>bad {props.bad}</p>
+      <p>all {props.all}</p>
+      <p>average {props.avg / props.total}</p>
     </div>
   )
 }
-
-// Shows all reviews
-const Stats =(props) => {
-  console.log(props)
-  return(
-    <div>
-      <p>all {props.all} </p>
-    </div>
-  )
-}
-
-const Average =(props) => {
-  return(
-    <div>
-      <p>average {props.avg / props.total} </p>
-    </div>
-  )
-}
-
-
 
 const App = () => {
   // tallenna napit toiseen kohtaan
@@ -110,12 +74,7 @@ const App = () => {
       </button>
 
       <StatsHeader/>
-      <GStats good ={good}  />
-      <NStats neutral ={neutral}  />
-      <BStats bad ={bad}  />
-      <Stats all ={good + neutral + bad}/>
-      <Average avg = {allReviews} total ={total}/>
-  
+      <Statistics good ={good} neutral = {neutral} bad = {bad} all = {good + neutral + bad} avg = {allReviews} total ={total}/>
     </div>
   )
 }
