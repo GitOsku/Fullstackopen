@@ -30,8 +30,9 @@ const Button = ({handleClick, text}) => {
 const StatisticsLine = (props) => {
   console.log(props)
   return(
-    <tr>
-      {props.text} {props.value}
+    <tr>  
+      <td>{props.text} </td>
+      <td>{props.value}</td>
     </tr>
   )
 
@@ -47,15 +48,14 @@ const Statistics = (props) => {
 }
 else {
   return(
-      <table>
-        <tbody>
-        <StatisticsLine text="good" value ={props.good} />
-        <StatisticsLine text="neutral" value ={props.neutral} />
-        <StatisticsLine text ="bad" value ={props.bad} />
-        <StatisticsLine text ="all" value ={props.all}/>
-        <StatisticsLine text ="average" value ={props.ar / props.total}/>
-        </tbody>
-      </table>
+        <table>
+         <StatisticsLine text="good" value ={props.good} />
+         <StatisticsLine text="neutral" value ={props.neutral} />
+         <StatisticsLine text ="bad" value ={props.bad} />
+         <StatisticsLine text ="all" value ={props.all}/>
+         <StatisticsLine text ="average" value ={props.ar / props.total}/>
+         <StatisticsLine text ="positive" value ={props.pos + "%"} />
+        </table>
     )
   }
 }
@@ -94,13 +94,14 @@ const App = () => {
       <div>
       <Button handleClick={goodHandle} text ='good' />
       <Button handleClick={neutralHandle} text ='neutral' />
-      <Button handleClick={badHandle} text ='bad' />
+      <Button handleClick={badHandle} text ='bad' /> 
       </div>
       <StatsHeader/>
       <Statistics good ={good} neutral = {neutral} bad = {bad} 
       all = {good + neutral + bad} 
       ar = {allReviews} // var that defines numeric value to good neutral and bad review
-      total ={total} />
+      total ={total} 
+      pos = {good / total * 100} />
     </div>
   )
 }
