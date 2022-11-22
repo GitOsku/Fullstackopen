@@ -49,6 +49,10 @@ const Statistics = (props) => {
   }
 };
 
+const Vote = ({ handleClick, text }) => {
+  return <button onClick={handleClick}>{text}</button>;
+};
+
 const Anekdootti = (props) => {
   console.log(props);
   return <p> {props.anecdotes[props.selected]}</p>;
@@ -71,6 +75,11 @@ const App = () => {
   const [total, setTotal] = useState(0);
   const [allReviews, setAll] = useState(0);
   const [selected, setSelected] = useState(0);
+  const [voted, setVoted] = useState(0);
+
+  const points = new Uint8Array(anecdotes);
+
+  const copy = { ...points };
 
   const goodHandle = () => {
     setGood(good + 1);
@@ -96,20 +105,27 @@ const App = () => {
     console.log(number);
   };
 
+  const voteCounter = () => {
+    setVoted(copy[selected] += 1)
+    console.log(copy);
+  };
+
   return (
     <div>
       <Header />
       <div>
-        <Button handleClick={goodHandle} text="good" />
-        <Button handleClick={neutralHandle} text="neutral" />
-        <Button handleClick={badHandle} text="bad" />
+        <Button handleClick={goodHandle} text="Good" />
+        <Button handleClick={neutralHandle} text="Neutral" />
+        <Button handleClick={badHandle} text="Bad" />
         <div></div>
         <p></p>
       </div>
-      <Button handleClick={random} text="next anecdote" />
+      <Button handleClick={random} text="Next anecdote" />
+
+      <Vote handleClick={voteCounter} text="Vote" />
 
       <Anekdootti anecdotes={anecdotes} selected={selected} />
-
+      {"has " + voted + " votes."} <br />
       <StatsHeader />
       <Statistics
         good={good}
